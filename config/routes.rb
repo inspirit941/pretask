@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-
-  root 'posts/index'
-
+  
+  root 'posts#index'
+  resources 'posts' do
+    resources 'comments'
+  end
   get 'posts/new' => 'posts#new'
 
   post 'posts/create' => 'posts#create'
@@ -13,10 +15,11 @@ Rails.application.routes.draw do
 
   post 'posts/update/:id' => 'posts#update'
 
-  post 'posts/destroy/:id' => 'posts#destroy'
+  delete 'posts/destroy/:id' => 'posts#destroy'
 
   post 'comments/create' => 'comments#create'
 
+  delete 'comments/destroy/:id' => 'comments#destroy'
   post 'comments/destroy/:id' => 'comments#destroy'
 
 

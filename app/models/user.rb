@@ -3,7 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :post
-  belongs_to :comment
+  has_many :posts
+  has_many :comments
+  accepts_nested_attributes_for :posts
+  accepts_nested_attributes_for :comments
   
 end
